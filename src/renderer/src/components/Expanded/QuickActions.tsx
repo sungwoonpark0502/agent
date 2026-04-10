@@ -29,7 +29,7 @@ function saveActions(actions: QuickAction[]): void {
 }
 
 export function QuickActions(): React.JSX.Element {
-  const { addMessage, setDraft } = useConversationStore()
+  const { addMessage, setDraft, resetConversation } = useConversationStore()
   const [actions, setActions] = useState<QuickAction[]>(loadActions)
   const [isEditing, setIsEditing] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
@@ -271,42 +271,62 @@ export function QuickActions(): React.JSX.Element {
 
   return (
     <div
-      className="flex items-center gap-1.5 px-3 py-2 flex-shrink-0"
+      className="flex items-center flex-shrink-0"
       style={{
         borderBottom: '1px solid var(--divider)',
         background: 'var(--surface-elevated)',
         height: 44,
-        overflowX: 'auto',
-        scrollbarWidth: 'none'
       }}
     >
-      {actions.map((action) => (
-        <button
-          key={action.id}
-          className="flex items-center gap-1 px-2.5 py-1 rounded-full flex-shrink-0 transition-all hover:opacity-80 active:scale-95"
-          style={{
-            background: 'rgba(168, 200, 240, 0.1)',
-            border: '1px solid rgba(168, 200, 240, 0.2)',
-            color: 'var(--text-secondary)',
-            fontSize: '12px',
-            whiteSpace: 'nowrap'
-          }}
-          onClick={() => handleAction(action)}
-        >
-          {action.label}
-        </button>
-      ))}
+      {/* Scrollable action buttons */}
+      <div
+        className="flex items-center gap-1.5 px-3 flex-1 overflow-x-auto"
+        style={{ scrollbarWidth: 'none', minWidth: 0 }}
+      >
+        {actions.map((action) => (
+          <button
+            key={action.id}
+            className="flex items-center gap-1 px-2.5 py-1 rounded-full flex-shrink-0 transition-all hover:opacity-80 active:scale-95"
+            style={{
+              background: 'rgba(168, 200, 240, 0.1)',
+              border: '1px solid rgba(168, 200, 240, 0.2)',
+              color: 'var(--text-secondary)',
+              fontSize: '12px',
+              whiteSpace: 'nowrap'
+            }}
+            onClick={() => handleAction(action)}
+          >
+            {action.label}
+          </button>
+        ))}
+      </div>
 
-      {/* Edit button — always visible */}
-      <div className="flex-shrink-0 pl-1" style={{ borderLeft: '1px solid var(--divider)' }}>
+      {/* Fixed right section — always visible */}
+      <div
+        className="flex items-center gap-0.5 px-2 flex-shrink-0"
+        style={{ borderLeft: '1px solid var(--divider)' }}
+      >
+        {/* Edit quick actions */}
         <button
-          className="w-6 h-6 rounded-lg flex items-center justify-center hover:opacity-70 transition-opacity"
+          className="w-7 h-7 rounded-lg flex items-center justify-center hover:opacity-70 transition-opacity"
           style={{ color: 'var(--text-tertiary)' }}
           onClick={() => { setIsEditing(true); setEditingId(null) }}
           title="Customize"
         >
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
             <path d="M7.5 1.5l2 2L3.5 9.5H1.5V7.5L7.5 1.5z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+
+        {/* New chat */}
+        <button
+          className="w-7 h-7 rounded-lg flex items-center justify-center hover:opacity-70 transition-opacity"
+          style={{ color: 'var(--text-tertiary)' }}
+          onClick={resetConversation}
+          title="New chat"
+        >
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+            <path d="M7 2v10M2 7h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
         </button>
       </div>

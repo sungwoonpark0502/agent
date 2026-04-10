@@ -1,5 +1,5 @@
 import React from 'react'
-import { useUIStore, useSettingsStore, useConversationStore } from '../../store'
+import { useUIStore, useSettingsStore } from '../../store'
 
 interface Props {
   onOpenSettings: () => void
@@ -10,7 +10,6 @@ interface Props {
 export function ExpandedHeader({ onOpenSettings, onOpenHistory, onMinimize }: Props): React.JSX.Element {
   const { pillState, theme, setTheme } = useUIStore()
   const { settings, updateSetting } = useSettingsStore()
-  const { resetConversation } = useConversationStore()
 
   const toggleTheme = (): void => {
     const next = theme === 'dark' ? 'light' : 'dark'
@@ -73,18 +72,6 @@ export function ExpandedHeader({ onOpenSettings, onOpenHistory, onMinimize }: Pr
               <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           )}
-        </button>
-
-        {/* New chat */}
-        <button
-          className="w-7 h-7 rounded-lg flex items-center justify-center hover:opacity-70 transition-opacity"
-          style={{ color: 'var(--text-secondary)' }}
-          onClick={resetConversation}
-          title="New chat"
-        >
-          <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
-            <path d="M7 2v10M2 7h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
         </button>
 
         {/* History */}
