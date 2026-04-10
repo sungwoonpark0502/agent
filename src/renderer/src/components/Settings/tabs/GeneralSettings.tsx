@@ -89,7 +89,7 @@ export function GeneralSettings(): React.JSX.Element {
               <input
                 type="text"
                 className="w-full px-2.5 py-1.5 rounded-lg"
-                style={{ background: 'rgba(0,0,0,0.04)', border: '1px solid var(--divider)', color: 'var(--text-primary)', fontSize: '13px', outline: 'none' }}
+                style={{ background: 'var(--surface-elevated)', border: '1px solid var(--divider)', color: 'var(--text-primary)', fontSize: '13px', outline: 'none' }}
                 placeholder="Your name"
                 value={settings.userName}
                 onChange={(e) => updateSetting('userName', e.target.value)}
@@ -100,7 +100,7 @@ export function GeneralSettings(): React.JSX.Element {
               <input
                 type="text"
                 className="w-full px-2.5 py-1.5 rounded-lg"
-                style={{ background: 'rgba(0,0,0,0.04)', border: '1px solid var(--divider)', color: 'var(--text-primary)', fontSize: '13px', outline: 'none' }}
+                style={{ background: 'var(--surface-elevated)', border: '1px solid var(--divider)', color: 'var(--text-primary)', fontSize: '13px', outline: 'none' }}
                 placeholder="e.g. Alex, Amy, Chris…"
                 value={settings.agentName}
                 onChange={(e) => updateSetting('agentName', e.target.value)}
@@ -139,7 +139,7 @@ export function GeneralSettings(): React.JSX.Element {
             <input
               type="password"
               className="w-full px-2.5 py-1.5 rounded-lg"
-              style={{ background: 'rgba(0,0,0,0.04)', border: '1px solid var(--divider)', color: 'var(--text-primary)', fontSize: '13px', outline: 'none' }}
+              style={{ background: 'var(--surface-elevated)', border: '1px solid var(--divider)', color: 'var(--text-primary)', fontSize: '13px', outline: 'none' }}
               placeholder="sk-ant-api03-…"
               value={anthropicKey}
               onChange={(e) => setAnthropicKey(e.target.value)}
@@ -155,7 +155,7 @@ export function GeneralSettings(): React.JSX.Element {
           <input
             type="password"
             className="w-full px-2.5 py-1.5 rounded-lg"
-            style={{ background: 'rgba(0,0,0,0.04)', border: '1px solid var(--divider)', color: 'var(--text-primary)', fontSize: '13px', outline: 'none' }}
+            style={{ background: 'var(--surface-elevated)', border: '1px solid var(--divider)', color: 'var(--text-primary)', fontSize: '13px', outline: 'none' }}
             placeholder={settings.hasWeatherKey ? '••••••••' : 'OpenWeatherMap key'}
             value={weatherKey}
             onChange={(e) => setWeatherKey(e.target.value)}

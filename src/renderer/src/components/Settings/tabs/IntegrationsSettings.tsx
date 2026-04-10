@@ -37,12 +37,12 @@ export function IntegrationsSettings(): React.JSX.Element {
     <div className="flex flex-col gap-6">
       <SettingsSection title="macOS Integrations" description="These use AppleScript and system APIs">
         {integrations.map((integration) => (
-          <div key={integration.id} className="flex items-start justify-between gap-4">
-            <div>
-              <p className="text-body font-medium" style={{ color: 'var(--text-primary)' }}>
+          <div key={integration.id} className="flex items-start justify-between gap-2">
+            <div className="flex-1 min-w-0">
+              <p className="font-medium truncate" style={{ color: 'var(--text-primary)', fontSize: '12px' }}>
                 {integration.label}
               </p>
-              <p className="text-caption" style={{ color: 'var(--text-secondary)' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '11px', lineHeight: '1.4', wordBreak: 'break-word' }}>
                 {integration.description}
               </p>
               {integration.status === 'requires_permission' && (

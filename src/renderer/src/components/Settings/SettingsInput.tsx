@@ -27,7 +27,7 @@ export function SettingsInput({ label, value, placeholder, onChange, type = 'tex
         type={type}
         className="w-full px-3 py-2 rounded-lg text-body"
         style={{
-          background: 'rgba(0,0,0,0.04)',
+          background: 'var(--surface-elevated)',
           border: '1px solid var(--divider)',
           color: 'var(--text-primary)',
           outline: 'none'

@@ -116,7 +116,7 @@ export function QuickActions(): React.JSX.Element {
     return (
       <div
         className="flex-shrink-0 px-3 py-2"
-        style={{ borderBottom: '1px solid var(--divider)' }}
+        style={{ borderBottom: '1px solid var(--divider)', background: 'var(--surface-solid)' }}
       >
         {/* Edit header */}
         <div className="flex items-center justify-between mb-2">
@@ -185,7 +185,7 @@ export function QuickActions(): React.JSX.Element {
                   </div>
                 </div>
               ) : (
-                <div className="flex items-center gap-2 px-2 py-1 rounded-lg hover:opacity-80" style={{ background: 'rgba(0,0,0,0.03)' }}>
+                <div className="flex items-center gap-2 px-2 py-1 rounded-lg hover:opacity-80" style={{ background: 'var(--surface-elevated)' }}>
                   <span className="flex-1 text-caption truncate" style={{ color: 'var(--text-primary)', fontSize: '12px' }}>
                     <span className="font-medium">{action.label}</span>
                     <span style={{ color: 'var(--text-tertiary)' }}> — {action.query}</span>

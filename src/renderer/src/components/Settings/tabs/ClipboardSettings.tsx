@@ -117,7 +117,7 @@ export function ClipboardSettings(): React.JSX.Element {
             <button
               key={item.id}
               className="flex items-start gap-2 px-3 py-2 rounded-lg text-left hover:opacity-80 transition-opacity"
-              style={{ background: 'rgba(0,0,0,0.04)', border: '1px solid var(--divider)' }}
+              style={{ background: 'var(--surface-elevated)', border: '1px solid var(--divider)' }}
               onClick={() => handleCopy(item)}
             >
               <div

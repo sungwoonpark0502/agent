@@ -67,8 +67,8 @@ export function SettingsPanel({ onClose, onLogout }: Props): React.JSX.Element {
       <div className="flex flex-1 overflow-hidden">
       {/* Sidebar */}
       <div
-        className="w-44 flex flex-col flex-shrink-0 py-3"
-        style={{ borderRight: '1px solid var(--divider)', background: 'rgba(0,0,0,0.03)' }}
+        className="w-36 flex flex-col flex-shrink-0 py-3"
+        style={{ borderRight: '1px solid var(--divider)', background: 'var(--surface-elevated)' }}
       >
         <div className="px-4 mb-3 flex items-center justify-between">
           <span className="font-semibold" style={{ color: 'var(--text-tertiary)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Menu</span>

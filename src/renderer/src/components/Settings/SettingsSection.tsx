@@ -17,7 +17,7 @@ export function SettingsSection({ title, description, children }: Props): React.
       </div>
       <div
         className="flex flex-col gap-3 p-4 rounded-xl"
-        style={{ background: 'rgba(0,0,0,0.04)', border: '1px solid var(--divider)' }}
+        style={{ background: 'var(--surface-elevated)', border: '1px solid var(--divider)' }}
       >
         {children}
       </div>

@@ -74,7 +74,7 @@ export function MemorySettings(): React.JSX.Element {
           type="text"
           className="w-full px-3 py-2 rounded-lg text-body"
           style={{
-            background: 'rgba(0,0,0,0.04)',
+            background: 'var(--surface-elevated)',
             border: '1px solid var(--divider)',
             color: 'var(--text-primary)',
             outline: 'none'
