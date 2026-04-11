@@ -75,16 +75,16 @@ module.exports = {
           to: { opacity: '1' }
         },
         'scale-in': {
-          '0%':   { opacity: '0', transform: 'scale(0.04)', borderRadius: '50px' },
-          '45%':  { opacity: '1', transform: 'scale(1.03)', borderRadius: '14px' },
-          '68%':  { transform: 'scale(0.985)' },
-          '84%':  { transform: 'scale(1.006)' },
-          '100%': { opacity: '1', transform: 'scale(1)', borderRadius: '12px' }
+          '0%':   { opacity: '0', transform: 'translate(var(--pill-dx, 0px), var(--pill-dy, 0px)) scale(0.05)', borderRadius: '50px' },
+          '45%':  { opacity: '1', transform: 'translate(0, 0) scale(1.03)', borderRadius: '14px' },
+          '68%':  { transform: 'translate(0, 0) scale(0.985)' },
+          '84%':  { transform: 'translate(0, 0) scale(1.006)' },
+          '100%': { opacity: '1', transform: 'translate(0, 0) scale(1)', borderRadius: '12px' }
         },
         'scale-out': {
-          '0%':   { opacity: '1', transform: 'scale(1)',    borderRadius: '12px' },
-          '30%':  { opacity: '1', transform: 'scale(1.02)', borderRadius: '14px' },
-          '100%': { opacity: '0', transform: 'scale(0.04)', borderRadius: '50px' }
+          '0%':   { opacity: '1', transform: 'translate(0, 0) scale(1)', borderRadius: '12px' },
+          '20%':  { opacity: '1', transform: 'translate(0, 0) scale(1.02)', borderRadius: '14px' },
+          '100%': { opacity: '0', transform: 'translate(var(--pill-dx, 0px), var(--pill-dy, 0px)) scale(0.05)', borderRadius: '50px' }
         }
       },
       transitionTimingFunction: {

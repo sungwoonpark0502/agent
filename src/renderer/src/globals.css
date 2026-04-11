@@ -4,9 +4,10 @@
 
 /* ─── CSS Variables ───────────────────────────────────────────────────────── */
 :root {
-  /* Light mode: white chrome */
+  /* Light mode: white tint strong enough to override native dark vibrancy */
+  /* ⚠️ DO NOT lower these below 0.55 — below that, macOS dark vibrancy overpowers the tint and light mode looks gray/dark */
   --surface: rgba(255, 255, 255, 0.60);
-  --surface-elevated: rgba(255, 255, 255, 0.80);
+  --surface-elevated: rgba(255, 255, 255, 0.75);
   --surface-solid: rgba(246, 246, 248, 1.0);
   --text-primary: #000000;
   --text-secondary: #2c2c2e;
@@ -30,9 +31,9 @@
 }
 
 [data-theme="dark"] {
-  /* Dark mode: very subtle dark tint so it reads as dark */
-  --surface: rgba(0, 0, 0, 0.18);
-  --surface-elevated: rgba(0, 0, 0, 0.28);
+  /* Dark mode: dark tint strong enough to look dark */
+  --surface: rgba(0, 0, 0, 0.45);
+  --surface-elevated: rgba(0, 0, 0, 0.55);
   --surface-solid: rgba(20, 20, 24, 1.0);
   --text-primary: #F2F2F7;
   --text-secondary: #C7C7CC;
@@ -272,8 +273,9 @@ input:checked + .toggle-slider::after {
 }
 
 /* ─── Message bubble backgrounds ─────────────────────────────────────────── */
+/* ⚠️ DO NOT set bubbles/input-box to transparent — they look dark in light mode (native vibrancy) */
 .bubble-assistant {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.80);
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 [data-theme="dark"] .bubble-assistant {
@@ -283,7 +285,7 @@ input:checked + .toggle-slider::after {
 
 /* ─── Input bar background ────────────────────────────────────────────────── */
 .input-box {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.80);
 }
 [data-theme="dark"] .input-box {
   background: rgba(255, 255, 255, 0.06);
@@ -298,11 +300,23 @@ input:checked + .toggle-slider::after {
 
 
 /* ─── Message thread area ─────────────────────────────────────────────────── */
+/* ⚠️ DO NOT set thread-scroll to transparent in light mode — it will look dark (native vibrancy) */
 .thread-scroll {
-  background: rgba(255, 255, 255, 0.65) !important;
+  background: rgba(255, 255, 255, 0.60) !important;
 }
 [data-theme="dark"] .thread-scroll {
-  background: rgba(0, 0, 0, 0.20) !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+}
+
+/* ─── Opaque theme-aware background (for pages that must show correct theme) ── */
+/* Use .theme-opaque on pages like onboarding that need a solid bg but should    */
+/* respond to CSS theme, NOT native vibrancy. Never use --surface-solid here     */
+/* because that variable gets set to transparent when we want full transparency. */
+.theme-opaque {
+  background: rgba(246, 246, 248, 1.0) !important;
+}
+[data-theme="dark"] .theme-opaque {
+  background: rgba(20, 20, 24, 1.0) !important;
 }
 
 /* ─── Responsive helpers ───────────────────────────────────────────────────── */

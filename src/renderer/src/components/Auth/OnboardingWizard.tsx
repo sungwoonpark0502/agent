@@ -90,8 +90,8 @@ export function OnboardingWizard({ onComplete }: Props): React.JSX.Element {
     >
       {/* Drag header */}
       <div
-        className="drag-region flex-shrink-0 flex items-center px-4 gap-3"
-        style={{ height: 46, borderBottom: '1px solid var(--divider)', background: 'var(--surface-solid)', WebkitAppRegion: 'drag' } as React.CSSProperties}
+        className="drag-region flex-shrink-0 flex items-center px-4 gap-3 theme-opaque"
+        style={{ height: 46, borderBottom: '1px solid var(--divider)', WebkitAppRegion: 'drag' } as React.CSSProperties}
       >
         <span style={{ color: 'var(--text-tertiary)', fontSize: '13px', fontWeight: 500, flex: 1 }}>
           Getting started
@@ -111,7 +111,7 @@ export function OnboardingWizard({ onComplete }: Props): React.JSX.Element {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-7 py-3 pb-6" style={{ background: 'var(--surface-solid)' }}>
+      <div className="theme-opaque flex-1 overflow-y-auto px-7 py-3 pb-6">
 
         {/* Step 1: Name */}
         {step === 1 && (

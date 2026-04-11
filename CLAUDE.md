@@ -195,6 +195,14 @@ Destructive tools (require user confirmation before executing): `send_email`, `s
 
 ## Common Gotchas
 
+- **⚠️ NEVER revert OnboardingWizard to transparent/surface-solid backgrounds.** The "Set your preferences" page (step 2) MUST use the `.theme-opaque` CSS class on its drag header and content area. This is a hardcoded opaque white/dark background defined in globals.css that actually responds to `data-theme`. If you use `transparent` or `var(--surface-solid)` here, the page will always show native macOS vibrancy (system dark) and ignore the CSS theme — it will look dark even in light mode. This has been reverted by mistake multiple times. Do not change it.
+
+- **`.theme-opaque` class:** Defined in `globals.css`. Use it on any page that must show a solid theme-correct background (white in light mode, near-black in dark mode) but shouldn't use `--surface-solid` (which gets set to `transparent` for the main transparent pages). Currently used by OnboardingWizard header + content.
+
+- **Transparency architecture:** `--surface` and `--surface-elevated` are set to `transparent` globally so that the main chat page, pill, and auth pages are see-through (native macOS vibrancy shows behind). Pages that must be opaque (Settings, History, OnboardingWizard) must NOT rely on these variables — they must use `--surface-solid` (Settings/History) or `.theme-opaque` (Onboarding).
+
+- **⚠️ NEVER set `--surface`, `--surface-elevated`, `.thread-scroll`, `.bubble-assistant`, or `.input-box` to `transparent` in light mode.** Native macOS vibrancy follows the SYSTEM theme, not the CSS theme. Setting backgrounds to `transparent` makes light mode look exactly like dark mode (gray/dark) because the system vibrancy shows through. Light mode surfaces MUST use `rgba(255,255,255, 0.60+)` — at minimum 0.55 opacity or the white tint is too weak to override the dark vibrancy. This has been broken many times. Do not lower these values.
+
 - **Gray light mode:** If light mode looks gray/dark, check that CSS variable values use `rgba(255,255,255,...)` not `rgba(0,0,0,...)`. Pure `transparent` makes both themes look identical since native vibrancy follows system theme, not CSS theme.
 - **Text invisible in light mode:** Hardcoded `rgba(0,0,0,0.04)` input backgrounds look fine in dark but invisible in light — use `var(--surface-elevated)` instead.
 - **Animation doesn't go to pill:** `transformOrigin` is calculated from actual window bounds via `window:get-bounds` IPC on mount. If pill moves after mount, origin won't update until next open.

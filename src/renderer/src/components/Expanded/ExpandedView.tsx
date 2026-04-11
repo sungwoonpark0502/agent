@@ -19,10 +19,10 @@ export function ExpandedView(): React.JSX.Element {
   const { setSettings, settings } = useSettingsStore()
   const [authView, setAuthView] = useState<AuthView>('loading')
   const [isClosing, setIsClosing] = useState(false)
-  const [transformOrigin, setTransformOrigin] = useState('bottom right')
+  const [pillOffset, setPillOffset] = useState({ x: 0, y: 0 })
   const closingRef = useRef(false)
 
-  // On mount: load settings + calculate exact animation origin from window bounds
+  // On mount: load settings + calculate pill offset for animation
   useEffect(() => {
     window.agent.settings.get().then((s) => {
       setSettings(s)
@@ -35,11 +35,12 @@ export function ExpandedView(): React.JSX.Element {
 
     window.agent.window.getBounds().then(({ pillBounds, expandedBounds }) => {
       if (pillBounds && expandedBounds) {
-        const pillCenterX = pillBounds.x + pillBounds.width / 2
-        const pillCenterY = pillBounds.y + pillBounds.height / 2
-        const relX = ((pillCenterX - expandedBounds.x) / expandedBounds.width) * 100
-        const relY = ((pillCenterY - expandedBounds.y) / expandedBounds.height) * 100
-        setTransformOrigin(`${relX.toFixed(1)}% ${relY.toFixed(1)}%`)
+        // Vector from expanded center to pill center
+        const expCX = expandedBounds.x + expandedBounds.width / 2
+        const expCY = expandedBounds.y + expandedBounds.height / 2
+        const pillCX = pillBounds.x + pillBounds.width / 2
+        const pillCY = pillBounds.y + pillBounds.height / 2
+        setPillOffset({ x: pillCX - expCX, y: pillCY - expCY })
       }
     })
   }, [setSettings])
@@ -102,9 +103,10 @@ export function ExpandedView(): React.JSX.Element {
       className={`w-full h-full flex flex-col rounded-xl overflow-hidden ${isClosing ? 'animate-scale-out' : 'animate-scale-in'}`}
       style={{
         background: 'transparent',
-        border: '1px solid var(--divider)',
-        boxShadow: 'var(--shadow-elevated)',
-        transformOrigin
+        border: 'none',
+        boxShadow: 'none',
+        '--pill-dx': `${pillOffset.x}px`,
+        '--pill-dy': `${pillOffset.y}px`,
       } as React.CSSProperties}
     >
       {authView === 'app' ? (

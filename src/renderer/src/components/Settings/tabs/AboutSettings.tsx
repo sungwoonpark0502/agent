@@ -6,7 +6,7 @@ interface Props {
 }
 
 export function AboutSettings({ onLogout }: Props): React.JSX.Element {
-  const { settings, updateSetting } = useSettingsStore()
+  const { updateSetting } = useSettingsStore()
   const [version, setVersion] = useState('')
   const [loggingOut, setLoggingOut] = useState(false)
 
@@ -41,19 +41,7 @@ export function AboutSettings({ onLogout }: Props): React.JSX.Element {
         </div>
       </div>
 
-      {/* Usage stats */}
-      <div className="flex flex-col gap-2 p-3 rounded-xl" style={{ background: 'rgba(0,0,0,0.03)', border: '1px solid var(--divider)' }}>
-        <div className="flex justify-between">
-          <span style={{ color: 'var(--text-secondary)', fontSize: '12px' }}>API calls</span>
-          <span style={{ color: 'var(--text-primary)', fontSize: '12px', fontWeight: 500 }}>{settings.totalApiCalls.toLocaleString()}</span>
-        </div>
-        <div className="flex justify-between">
-          <span style={{ color: 'var(--text-secondary)', fontSize: '12px' }}>Tokens used</span>
-          <span style={{ color: 'var(--text-primary)', fontSize: '12px', fontWeight: 500 }}>{settings.totalTokensUsed.toLocaleString()}</span>
-        </div>
-      </div>
-
-      {/* Account actions */}
+      {/* Actions */}
       <div className="flex flex-col gap-2">
         <button
           className="w-full py-2 rounded-lg font-medium transition-all hover:opacity-80"
@@ -67,11 +55,11 @@ export function AboutSettings({ onLogout }: Props): React.JSX.Element {
           onClick={handleLogout}
           disabled={loggingOut}
         >
-          {loggingOut ? 'Disconnecting…' : settings.hasAnthropicKey ? 'Log Out' : 'Log Out (Demo Mode)'}
+          {loggingOut ? 'Logging out…' : 'Log Out'}
         </button>
         <button
           className="w-full py-2 rounded-lg font-medium transition-all hover:opacity-80"
-          style={{ background: 'rgba(0,0,0,0.05)', color: 'var(--text-secondary)', border: '1px solid var(--divider)', fontSize: '13px' }}
+          style={{ background: 'var(--surface-elevated)', color: 'var(--text-secondary)', border: '1px solid var(--divider)', fontSize: '13px' }}
           onClick={() => window.agent.app.quit()}
         >
           Quit Agent

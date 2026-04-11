@@ -113,7 +113,7 @@ export function CreateAccountScreen({ onBackToLogin }: Props): React.JSX.Element
       {/* Drag header */}
       <div
         className="drag-region flex-shrink-0 flex items-center px-4 gap-3"
-        style={{ height: 46, borderBottom: '1px solid var(--divider)', background: 'var(--surface-solid)', WebkitAppRegion: 'drag' } as React.CSSProperties}
+        style={{ height: 46, borderBottom: '1px solid var(--divider)', background: 'transparent', WebkitAppRegion: 'drag' } as React.CSSProperties}
       >
         <span style={{ color: 'var(--text-tertiary)', fontSize: '13px', fontWeight: 500, flex: 1 }}>
           Create Account
@@ -138,7 +138,7 @@ export function CreateAccountScreen({ onBackToLogin }: Props): React.JSX.Element
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-7 py-5 pb-6" style={{ background: 'var(--surface-solid)' }}>
+      <div className="flex-1 overflow-y-auto px-7 py-5 pb-6" style={{ background: 'transparent' }}>
 
         {/* ── Step 1: Account info ── */}
         {step === 'info' && (
