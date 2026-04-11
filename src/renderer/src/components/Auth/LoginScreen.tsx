@@ -51,13 +51,13 @@ export function LoginScreen({ onLogin, onCreateAccount }: Props): React.JSX.Elem
     >
       {/* Drag header */}
       <div
-        className="drag-region flex-shrink-0 flex items-center px-4"
-        style={{ height: 46, borderBottom: '1px solid var(--divider)', background: 'transparent', WebkitAppRegion: 'drag' } as React.CSSProperties}
+        className="drag-region theme-opaque flex-shrink-0 flex items-center px-4"
+        style={{ height: 46, borderBottom: '1px solid var(--divider)', WebkitAppRegion: 'drag' } as React.CSSProperties}
       >
         <span style={{ color: 'var(--text-tertiary)', fontSize: '13px', fontWeight: 500 }}>Agent</span>
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center px-7 pb-6" style={{ background: 'transparent' }}>
+      <div className="theme-opaque flex-1 flex flex-col items-center justify-center px-7 pb-6">
         {/* Logo */}
         <div
           className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
